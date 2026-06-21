@@ -1,15 +1,15 @@
-from tools.balance_tool import balance_tool
+from tools.emi_tool import emi_tool
 from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
 
-class BalanceAgent:
+class EmiAgent:
     def __init__(self):
         self.llm = OpenAI(temperature=0)
 
-    def run(self, account_number: str) -> str:
-        data = balance_tool(account_number)
+    def run(self, amount: int, rate: float, tenure: int) -> str:
+        data = emi_tool(amount, rate, tenure)
         prompt = PromptTemplate(
             input_variables=["data"],
-            template="Explain this balance information clearly for the customer:\n{data}"
+            template="Explain EMI calculation results clearly:\n{data}"
         )
         return self.llm(prompt.format(data=data))

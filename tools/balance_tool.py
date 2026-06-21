@@ -1,4 +1,4 @@
-def balance_tool(account_number: str) -> str:
-    # Mock balance lookup
-    balances = {"12345": "₹25,000", "67890": "₹12,500"}
-    return balances.get(account_number, "Account not found")
+from tools.api_client import call_api
+
+def balance_tool(account_number: str) -> dict:
+    return call_api("balance", {"account": account_number})

@@ -4,4 +4,11 @@ def loan_tool(query: str) -> str:
         "car": "Car Loan interest rate: 9.2% per annum",
         "personal": "Personal Loan interest rate: 11% per annum"
     }
-    return loans.get(query.lower(), "Loan type not recognized")
+    """return loans.get(query.lower(), "Loan type not recognized")"""
+    if not query:
+       return "Please specify loan type"
+
+    return loans.get(
+    query.lower(),
+    "Loan type not recognized"
+    )

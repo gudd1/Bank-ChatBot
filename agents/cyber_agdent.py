@@ -1,15 +1,15 @@
-from tools.balance_tool import balance_tool
+from tools.cyber_tool import cyber_tool
 from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
 
-class BalanceAgent:
+class CyberAgent:
     def __init__(self):
         self.llm = OpenAI(temperature=0)
 
-    def run(self, account_number: str) -> str:
-        data = balance_tool(account_number)
+    def run(self) -> str:
+        data = cyber_tool()
         prompt = PromptTemplate(
             input_variables=["data"],
-            template="Explain this balance information clearly for the customer:\n{data}"
+            template="Explain cyber security awareness tips:\n{data}"
         )
         return self.llm(prompt.format(data=data))

@@ -1,15 +1,15 @@
-from tools.balance_tool import balance_tool
+from tools.asba_tool import asba_tool
 from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
 
-class BalanceAgent:
+class AsbaAgent:
     def __init__(self):
         self.llm = OpenAI(temperature=0)
 
-    def run(self, account_number: str) -> str:
-        data = balance_tool(account_number)
+    def run(self) -> str:
+        data = asba_tool()
         prompt = PromptTemplate(
             input_variables=["data"],
-            template="Explain this balance information clearly for the customer:\n{data}"
+            template="Explain ASBA services clearly:\n{data}"
         )
         return self.llm(prompt.format(data=data))
